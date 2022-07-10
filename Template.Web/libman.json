@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "roboto-fontface-material@0.1.0",
+      "destination": "wwwroot/lib/roboto-fontface-material/",
+      "files": [
+        "fonts/roboto-fontface-material.css",
+        "fonts/Roboto-Light.woff",
+        "fonts/Roboto-Light.woff2",
+        "fonts/Roboto-Medium.woff",
+        "fonts/Roboto-Medium.woff2",
+        "fonts/Roboto-Regular.woff",
+        "fonts/Roboto-Regular.woff2",
+        "LICENSE"
+      ]
+    },
+    {
+      "library": "canvas-gauges@2.1.7",
+      "destination": "wwwroot/lib/canvas-gauges/",
+      "files": [
+        "gauge.min.js"
+      ]
+    }
+  ]
+}
