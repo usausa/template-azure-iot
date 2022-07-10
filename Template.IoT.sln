@@ -22,9 +22,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Functions", "Templ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Core", "Template.Core\Template.Core.csproj", "{055562AB-4E16-4E4C-BDA2-D14843590AE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.MqttClient", "Client.MqttClient\Client.MqttClient.csproj", "{6BCAD744-63AA-4DC6-A01F-DB795DDAD370}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.MqttClientExample", "Client.MqttClient\Client.MqttClientExample.csproj", "{6BCAD744-63AA-4DC6-A01F-DB795DDAD370}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.DeviceClient", "Client.DeviceClient\Client.DeviceClient.csproj", "{C56BFE56-9FFB-4476-B640-8510C45382B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.DeviceClientExample", "Client.DeviceClient\Client.DeviceClientExample.csproj", "{C56BFE56-9FFB-4476-B640-8510C45382B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
