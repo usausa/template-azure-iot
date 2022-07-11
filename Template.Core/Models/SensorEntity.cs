@@ -15,4 +15,8 @@ public class SensorEntity
 public static class SensorEntityExtensions
 {
     public static bool IsRunning(this SensorEntity value) => value.Timestamp > DateTime.UtcNow.AddMilliseconds(-30);
+
+    public static bool IsWarning(this SensorEntity value) => value.Value >= 75 && value.Value < 90;
+
+    public static bool IsError(this SensorEntity value) => value.Value >= 90;
 }

@@ -1,3 +1,138 @@
 @page "/"
+@implements IDisposable
+@inject SensorService SensorService
 
-<PageTitle>Index</PageTitle>
+<PageTitle>ダッシュボード</PageTitle>
+
+<MudGrid Spacing="1">
+    <MudItem xs="3">
+        <MudCard Class="border-b-4 border-solid mud-border-info">
+            <MudCardContent Class="pa-2">
+                <MudContainer Class="d-flex flex-row pa-0">
+                    <MudIcon Icon="@Icons.Material.Filled.Power" Color="Color.Info" Class="align-self-center"/>
+                    <MudText Typo="Typo.h6" Align="Align.Justify">稼働</MudText>
+                </MudContainer>
+                <MudContainer Class="d-flex justify-center pa-0">
+                    <MudText Typo="Typo.h3">@running.FormatCount()</MudText>
+                </MudContainer>
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+    <MudItem xs="3">
+        <MudCard Class="border-b-4 border-solid mud-border-success">
+            <MudCardContent Class="pa-2">
+                <MudContainer Class="d-flex flex-row justify-content-start pa-0">
+                    <MudIcon Icon="@Icons.Material.Filled.Sensors" Color="Color.Success" Class="align-self-center"/>
+                    <MudText Typo="Typo.h6" Align="Align.Justify">台数</MudText>
+                </MudContainer>
+                <MudContainer Class="d-flex justify-center pa-0">
+                    <MudText Typo="Typo.h3">@total.FormatCount()</MudText>
+                </MudContainer>
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+    <MudItem xs="3">
+        <MudCard Class="border-b-4 border-solid mud-border-warning">
+            <MudCardContent Class="pa-2">
+                <MudContainer Class="d-flex flex-row justify-content-start pa-0">
+                    <MudIcon Icon="@Icons.Material.Filled.Warning" Color="Color.Warning" Class="align-self-center"/>
+                    <MudText Typo="Typo.h6" Align="Align.Justify">警告</MudText>
+                </MudContainer>
+                <MudContainer Class="d-flex justify-center pa-0">
+                    <MudText Typo="Typo.h3">@warning.FormatCount()</MudText>
+                </MudContainer>
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+    <MudItem xs="3">
+        <MudCard Class="border-b-4 border-solid mud-border-error">
+            <MudCardContent Class="pa-2">
+                <MudContainer Class="d-flex flex-row justify-content-start pa-0">
+                    <MudIcon Icon="@Icons.Material.Filled.Cancel" Color="Color.Error" Class="align-self-center"/>
+                    <MudText Typo="Typo.h6" Align="Align.Justify">異常</MudText>
+                </MudContainer>
+                <MudContainer Class="d-flex justify-center pa-0">
+                    <MudText Typo="Typo.h3">@error.FormatCount()</MudText>
+                </MudContainer>
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+
+    <MudItem xs="12">
+        <MudTable Items="@list" Hover="true" Striped="true">
+            <ToolBarContent>
+                <MudText Typo="Typo.h6">センサー一覧</MudText>
+                <MudSpacer />
+                <MudIconButton Size="@Size.Medium" Icon="@Icons.Outlined.Refresh" OnClick="async () => await Update()" />
+            </ToolBarContent>
+            <HeaderContent>
+                <MudTh Class="text-center">状態</MudTh>
+                <MudTh>Id</MudTh>
+                <MudTh>値</MudTh>
+                <MudTh>最終更新</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd>
+                    <div class="d-flex justify-center">
+                        <MudIcon Icon="@Icons.Material.Filled.Sensors" Style="@($"color:{ViewHelper.StatusColor(context.IsRunning())}")" Class="align-self-center"/>
+                    </div>
+                </MudTd>
+                <MudTd>
+                    <MudText>@context.Id</MudText>
+                </MudTd>
+                <MudTd Class="py-0">
+                    <MudText Typo="Typo.caption" Align="Align.Justify">@context.Value.FormatValue()</MudText>
+                    <MudProgressLinear Color="@ViewHelper.ValueColor(context)" Size="Size.Medium" Max="100" Value="@context.Value"/>
+                </MudTd>
+                <MudTd>
+                    <MudText>@context.Timestamp.DateTime()</MudText>
+                </MudTd>
+            </RowTemplate>
+            <PagerContent >
+                <MudTablePager RowsPerPageString="Rows" />
+            </PagerContent>
+        </MudTable>
+    </MudItem>
+</MudGrid>
+
+@code {
+    private readonly System.Timers.Timer timer = new(30_000);
+
+    private List<SensorEntity> list = default!;
+    private int running;
+    private int total;
+    private int warning;
+    private int error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Update();
+
+        timer.Elapsed += (_, _) => OnTimerCallback();
+        timer.Start();
+    }
+
+    public void Dispose()
+    {
+        timer.Dispose();
+    }
+
+    private void OnTimerCallback()
+    {
+        _ = InvokeAsync(async () =>
+        {
+            await Update();
+
+            StateHasChanged();
+        });
+    }
+
+    private async ValueTask Update()
+    {
+        list = await SensorService.QuerySensorListAsync();
+        running = list.Count(x =>  x.IsRunning());
+        total = list.Count;
+        warning = list.Count(x => x.IsWarning());
+        error = list.Count(x => x.IsError());
+    }
+}

@@ -10,7 +10,7 @@ public static class ViewExtensions
 
     public static string FormatCount(this int value) => value.ToString("#,0", CultureInfo.InvariantCulture);
 
-    public static string FormatValue(this double value) => value.ToString("F3", CultureInfo.InvariantCulture);
+    public static string FormatValue(this double value) => value.ToString("F2", CultureInfo.InvariantCulture);
 
     public static string DateTime(this DateTime value) => value.ToLocal().ToString("yyyy/MM/dd HH:mm", CultureInfo.InvariantCulture);
 }

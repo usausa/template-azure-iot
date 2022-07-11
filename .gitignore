@@ -350,6 +350,7 @@ MigrationBackup/
 .ionide/
 
 # Custom
+/Template.Web/Properties/ServiceDependencies/*
 /Publish/
 /Log/
 /Storage/
