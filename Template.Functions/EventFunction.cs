@@ -36,7 +36,7 @@ public class EventFunction
         var entity = JsonSerializer.Deserialize<SensorEntity>(json);
         if (entity is not null)
         {
-            entity.Timestamp = message.EnqueuedTime.DateTime;
+            entity.Timestamp = message.EnqueuedTime;
             await sensorService.UpdateSensorAsync(entity).ConfigureAwait(false);
         }
     }

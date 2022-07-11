@@ -24,7 +24,7 @@ builder.Services.AddDataAccessor(c =>
 {
     c.EngineOption.ConfigureTypeMap(map =>
     {
-        map[typeof(DateTime)] = DbType.DateTime2;
+        map[typeof(DateTimeOffset)] = DbType.DateTime2;
     });
 });
 
