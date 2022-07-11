@@ -23,9 +23,9 @@
 
 ```sql
 CREATE TABLE Sensor (
-	Id uniqueidentifier NOT NULL,
-	Value real NOT NULL,
-	Timestamp datetimeoffset(3) NOT NULL,
+    Id uniqueidentifier NOT NULL,
+    Value real NOT NULL,
+    Timestamp datetimeoffset(3) NOT NULL,
     CONSTRAINT PK_Sensor PRIMARY KEY CLUSTERED (Id)
 )
 ```
