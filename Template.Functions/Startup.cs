@@ -1,7 +1,5 @@
 namespace Template.Functions;
 
-using System.Data;
-
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;

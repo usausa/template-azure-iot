@@ -1,15 +1,10 @@
 namespace Template.Functions;
 
-using System.Text;
 using System.Text.Json;
 
 using Azure.Messaging.EventHubs;
 
 using Microsoft.Azure.WebJobs;
-using Microsoft.Extensions.Logging;
-
-using Template.Models;
-using Template.Services;
 
 using IoTHubTrigger = Microsoft.Azure.WebJobs.EventHubTriggerAttribute;
 
