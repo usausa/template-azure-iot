@@ -45,7 +45,7 @@ public static class Program
         };
         client.ApplicationMessageReceivedAsync += args =>
         {
-            Console.WriteLine("ApplicationMessageReceivedAsync: " + Encoding.UTF8.GetString(args.ApplicationMessage.Payload));
+            Console.WriteLine("ApplicationMessageReceivedAsync: " + Encoding.UTF8.GetString(args.ApplicationMessage.PayloadSegment));
             return Task.CompletedTask;
         };
 
