@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
-    <PackageReference Include="MudBlazor" Version="6.1.7" />
+    <PackageReference Include="MudBlazor" Version="6.4.1" />
     <PackageReference Include="Usa.Smart.Core" Version="2.2.0" />
     <PackageReference Include="Usa.Smart.Data" Version="2.3.0" />
     <PackageReference Include="Usa.Smart.Data.Accessor.Extensions.DependencyInjection" Version="2.4.0" />
