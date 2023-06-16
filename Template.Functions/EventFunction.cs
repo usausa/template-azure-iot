@@ -26,7 +26,7 @@ public class EventFunction
     public async Task Run([IoTHubTrigger("", Connection = "HubConnectionString")] EventData message)
     {
         var json = Encoding.UTF8.GetString(message.Body.Span);
-        log.LogInformation("Event received: message=[{Json}]", json);
+        log.InfoEventReceived(json);
 
         var entity = JsonSerializer.Deserialize<SensorEntity>(json);
         if (entity is not null)
