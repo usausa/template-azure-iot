@@ -49,7 +49,7 @@ public static class Program
 #pragma warning restore CA5394
 }
 
-public class SensorValue
+public sealed class SensorValue
 {
     public Guid Id { get; set; }
 

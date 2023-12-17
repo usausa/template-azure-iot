@@ -2,7 +2,7 @@ namespace Template.Models;
 
 using Smart.Data.Accessor.Attributes;
 
-public class SensorEntity
+public sealed class SensorEntity
 {
     [Key]
     public Guid Id { get; set; }

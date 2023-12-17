@@ -8,7 +8,7 @@ using Microsoft.Azure.WebJobs;
 
 using IoTHubTrigger = Microsoft.Azure.WebJobs.EventHubTriggerAttribute;
 
-public class EventFunction
+public sealed class EventFunction
 {
     private readonly ILogger<EventFunction> log;
 

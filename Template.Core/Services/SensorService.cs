@@ -6,7 +6,7 @@ using Smart.Data.Accessor;
 
 using Template.Accessors;
 
-public class SensorService
+public sealed class SensorService
 {
     private readonly ISensorAccessor sensorAccessor;
 

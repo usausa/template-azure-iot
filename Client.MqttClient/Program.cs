@@ -26,7 +26,10 @@ public static class Program
             .WithClientId(ClientId)
             .WithCredentials(Username, Password)
             .WithProtocolVersion(MqttProtocolVersion.V311)
-            .WithTls()
+            .WithTlsOptions(o =>
+            {
+                o.WithCertificateValidationHandler(_ => true);
+            })
             .WithCleanSession()
             .Build();
 
@@ -84,7 +87,7 @@ public static class Program
 #pragma warning restore CA5394
 }
 
-public class SensorValue
+public sealed class SensorValue
 {
     public Guid Id { get; set; }
 

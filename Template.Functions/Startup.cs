@@ -9,7 +9,7 @@ using Smart.Data.Accessor.Extensions.DependencyInjection;
 
 using Template.Services;
 
-public class Startup : FunctionsStartup
+public sealed class Startup : FunctionsStartup
 {
     public override void Configure(IFunctionsHostBuilder builder)
     {
