@@ -8,7 +8,7 @@ using Microsoft.Azure.Devices.Client;
 public static class Program
 {
     private const string ConnectionString =
-        "HostName={hub}.azure-devices.net;DeviceId={deviceId};SharedAccessKey={ssa}";
+        "HostName=work-iot-hub.azure-devices.net;DeviceId=test;SharedAccessKey=H0SxGSIqlmt8M67XrHHTrH0ZNqCCcrPkOAIoTCQrHJs=";
 
     private static readonly Guid Id = Guid.Parse("00000000-0000-0000-0000-000000000000");
 
@@ -43,7 +43,7 @@ public static class Program
             await client.SendEventAsync(message, cts.Token).ConfigureAwait(false);
             Console.WriteLine(".");
 
-            await Task.Delay(60_000, cts.Token).ConfigureAwait(false);
+            await Task.Delay(10_000, cts.Token).ConfigureAwait(false);
         }
     }
 #pragma warning restore CA5394
