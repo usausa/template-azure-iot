@@ -14,5 +14,5 @@
   <Project Path="Client.MqttClient/Client.MqttClientExample.csproj" />
   <Project Path="Template.Core/Template.Core.csproj" />
   <Project Path="Template.Functions/Template.Functions.csproj" />
-  <Project Path="Template.Web/Template.Web.csproj" />
+  <Project Path="Template.Web/Template.Web.csproj" DefaultStartup="true" />
 </Solution>
